@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs')%>
+    <title>Express JS Practice | <%= title %></title>
+</head>
+
+<body>
+    <%- include('../partials/nav.ejs') %>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="mb-5">Welcome to Home page!</h1>
+                    <a href="/download?role=admin&isAccess=true" type="button">
+                        <Button type="button" class="btn btn-primary">Download Html & Javascript Book
+                        </Button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <%- include('../partials/scripts.ejs')%>
+</body>
+</html>
