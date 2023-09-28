@@ -1,4 +1,4 @@
-{
+const Products = {
 	"arrayOfProducts": [
 		{
 			"id": 1,
@@ -32,3 +32,5 @@
 		}
 	]
 }
+
+export default Products

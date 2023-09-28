@@ -1,7 +1,7 @@
-const router = require('express').Router();
-const path = require('path');
-const authMiddleware = require('../middlewares/authMiddleware');
-const downloadMiddleware = require('../middlewares/downloadPermission');
+import express from 'express';
+import { dirname, join } from 'path';
+import { authMiddleware, downloadMiddleware } from '../middlewares/permissionMiddleware.js';
+const router = express.Router();
 
 // #authMiddleware apply all routes 
 // router.use(authMiddleware);
@@ -25,13 +25,17 @@ router.get('/profile', authMiddleware, (req, res) => {
     res.json({ name: 'jawad', age: 21, qualification: 'undergraduate' });
 });
 
-// multiple apply middleware
+// multiple apply middleware 
 
 // download file 
 router.get('/download', [authMiddleware, downloadMiddleware], (req, res) => {
     // const file =  path.resolve(__dirname + '/public/html_javascript_book.zip');
-    const file = path.resolve(__dirname).split('/').slice(0, -1).join('/') + '/public/html_javascript_book.zip';
-    res.download(file);
+    // const file = path.resolve(__dirname).split('/').slice(0, -1).join('/') + '/public/html_javascript_book.zip';
+
+    // es6 module
+    const __dirname = dirname(new URL(import.meta.url).pathname);
+    const filePath = join(__dirname.split('/').slice(0, -1).join('/'), 'public/html_javascript_book.zip');
+    res.download(filePath);
 });
 
-module.exports = router;
+export default router;

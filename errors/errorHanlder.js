@@ -21,4 +21,5 @@ class ErrorHandler {
     }
 }
 
-module.exports = ErrorHandler;
+export default ErrorHandler
+// module.exports = ErrorHandler;

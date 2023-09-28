@@ -1,6 +1,7 @@
-const router = require('express').Router();
-const ErrorHandler = require('../errors/errorHanlder');
-let Products = require('../static/productData.json');
+import express from 'express' 
+const router = express.Router();
+import ErrorHandler from '../errors/errorHanlder.js';
+import Products from '../static/productData.js';
 
 // routes using ejs
 router.get('/products', (req, res) => {
@@ -50,4 +51,4 @@ router.delete('/api/products/:id', (req, res, next) => {
     }
 });
 
-module.exports = router;
+export default router;

@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
 const app = express();
-const mainRouters = require('./router/index');
-const productRouters = require('./router/product');
-const ErrorHandler = require('./errors/errorHanlder');
+import mainRouters from './router/index.js';
+import productRouters from './router/product.js';
+import ErrorHandler from './errors/errorHanlder.js';
 const PORT = process.env.PORT || 3000;
 
 // static files serve
