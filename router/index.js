@@ -1,6 +1,7 @@
 import express from 'express';
 import { dirname, join } from 'path';
 import { authMiddleware, downloadMiddleware } from '../middlewares/permissionMiddleware.js';
+import { MongoClient } from 'mongodb';
 const router = express.Router();
 
 // #authMiddleware apply all routes 
@@ -8,6 +9,15 @@ const router = express.Router();
 
 // routes using ejs
 router.get('/', (req, res) => {
+    // MongoClient.connect('mongodb://localhost:3000/sales', (err, db) => {
+    //     if (err) throw err
+    //     console.log(db)
+
+    //     db.collection('sales').find().toArray((err, result) => {
+    //         if (err) throw err
+    //         console.log(result)
+    //     })
+    // })
     res.render('index', {
         title: 'Home'
     });
@@ -34,7 +44,9 @@ router.get('/download', [authMiddleware, downloadMiddleware], (req, res) => {
 
     // es6 module
     const __dirname = dirname(new URL(import.meta.url).pathname);
-    const filePath = join(__dirname.split('/').slice(0, -1).join('/'), 'public/html_javascript_book.zip');
+    // const filePath = join(__dirname.split('/').slice(0, -1).join('/'), 'public/html_javascript_book.zip');
+    const filePath = join(__dirname, '../public/html_javascript_book.zip');
+    // console.log(filePath);
     res.download(filePath);
 });
 
