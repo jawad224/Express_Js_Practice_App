@@ -3,7 +3,10 @@ const app = express();
 import mainRouters from './router/index.js';
 import productRouters from './router/product.js';
 import ErrorHandler from './errors/errorHanlder.js';
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
+import cors from 'cors'
+app.use(cors())
+
 
 // static files serve
 app.use(express.static('public'));

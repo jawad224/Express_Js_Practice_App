@@ -14,6 +14,21 @@ router.get('/products', (req, res) => {
 router.get('/api/products', (req, res) => {
     res.json(Products);
 });
+router.get('/api/product/:id', (req, res, next) => {
+    try {
+        const { id } = req.params;
+        if (!Products.arrayOfProducts.filter((e) => e.id == id)) {
+            return res.status(404).json({ status: false, message: 'product id required' })
+        }
+        console.log('products==>',Products.arrayOfProducts)
+        console.log('id==>',id)
+        const products = Products.arrayOfProducts.find((e) => e.id == id);
+        // Products.arrayOfProducts = products;
+        return res.json({ status: true, data: products })
+    } catch (err) {
+        next(ErrorHandler.ServerError(err.message));
+    }
+});
 
 router.post('/api/products', (req, res, next) => {
     try {
